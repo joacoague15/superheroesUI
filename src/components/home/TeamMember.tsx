@@ -1,10 +1,10 @@
-import { IteamMember } from "../types";
+import { IteamMember } from "../../types";
 
 const TeamMember = (props: IteamMember) => {
-    const  { name, setTeamMembers } = props;
+    const  { name, setTeamMember } = props;
 
     const removeHeroFromTeam = () => {
-        setTeamMembers({ name: '' });
+        setTeamMember({ name: '' });
     }
 
     const displayRemoveButton = () => {
