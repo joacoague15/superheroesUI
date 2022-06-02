@@ -6,7 +6,7 @@ import HeroAvailable from "./HeroAvailable";
 import { IallTeamMembers, IteamMemberObject } from "../../types";
 
 const HeroRecruitment = (props: IallTeamMembers) => {
-    const { firstMember, secondMember, thirdMember, setFirstMember, setSecondMember, setThirdMember } = props;
+    const { teamMembers, setTeamMembers } = props;
 
     const [heroSearchedByName, setHeroSearchedByName] = useState([]);
     const [nameSearched, setNameSearched] = useState('');
@@ -43,7 +43,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
             <Searcher handleSubmit={handleSubmit} handleChange={handleChange} disabled={loading} />
             <div>
                 {heroSearchedByName && heroSearchedByName.map((hero: IteamMemberObject, i: number) =>
-                    <HeroAvailable key={i} heroName={hero.name} firstMember={firstMember} secondMember={secondMember} thirdMember={thirdMember} setFirstMember={setFirstMember} setSecondMember={setSecondMember} setThirdMember={setThirdMember} />
+                    <HeroAvailable key={i} heroName={hero.name} teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
                 )}
             </div>
         </div>

@@ -1,27 +1,19 @@
-import { IheroAvailable } from "../../types";
-import {useEffect} from "react";
+import { IheroAvailable, IteamMember } from "../../types";
 
 const HeroAvailable = (props: IheroAvailable) => {
-    const { heroName, firstMember, secondMember, thirdMember, setFirstMember, setSecondMember, setThirdMember  } = props;
-
-    useEffect(() => {
-
-    }, [])
+    const { heroName, setTeamMembers  } = props;
 
     const recruitHero = () => {
-        const heroMemberData = { name: heroName };
-        if (firstMember.name === '') {
-            setFirstMember(heroMemberData)
-            localStorage.setItem('firstMember', JSON.stringify(heroMemberData))
-        }
-        else if (secondMember.name === '') {
-            setSecondMember(heroMemberData)
-            localStorage.setItem('secondMember', JSON.stringify(heroMemberData))
-        }
-        else if (thirdMember.name === '') {
-            setThirdMember(heroMemberData)
-            localStorage.setItem('thirdMember', JSON.stringify(heroMemberData))
-        }
+        let findFreeSpace = true;
+        setTeamMembers((team: []) => {
+            return team.map((member: IteamMember) => {
+                if (member.name === '' && findFreeSpace) {
+                    findFreeSpace = false;
+                    return {...member, name: heroName};
+                }
+                return member;
+            });
+        });
     }
 
     return (

@@ -1,15 +1,14 @@
 import { IteamMember } from "../../types";
 
 const TeamMember = (props: IteamMember) => {
-    const  { name, setTeamMember } = props;
+    const  { name } = props;
 
-    const removeHeroFromTeam = () => {
-        setTeamMember({ name: '' });
+    const removeTeamMember = () => {
+        console.log('Member team removed')
     }
 
     const displayRemoveButton = () => {
-        if (name)
-            return <button onClick={removeHeroFromTeam}>Remove {name} from the team</button>
+        return name && <button onClick={removeTeamMember}>Remove {name} from the team</button>
     }
 
     return(

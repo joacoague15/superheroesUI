@@ -4,24 +4,15 @@ export interface IteamMemberObject {
 
 export interface IteamMember {
     name: string;
-    setTeamMember: Function;
 }
 
 export interface IallTeamMembers {
-    firstMember: IteamMemberObject;
-    secondMember: IteamMemberObject;
-    thirdMember: IteamMemberObject;
-    setFirstMember: Function;
-    setSecondMember: Function;
-    setThirdMember: Function;
+    teamMembers: { name: string }[];
+    setTeamMembers: Function;
 }
 
 export interface IheroAvailable {
-    firstMember: IteamMemberObject;
-    secondMember: IteamMemberObject;
-    thirdMember: IteamMemberObject;
-    setFirstMember: Function;
-    setSecondMember: Function;
-    setThirdMember: Function;
     heroName: string;
+    teamMembers: { name: string }[];
+    setTeamMembers: Function;
 }

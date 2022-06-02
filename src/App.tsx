@@ -5,9 +5,7 @@ import Home from "./components/home/Home";
 import HeroRecruitment from "./components/hero_recruitment/HeroRecruitment";
 
 function App() {
-    const [firstMember, setFirstMember] = useState({ name: '' });
-    const [secondMember, setSecondMember] = useState({ name: '' });
-    const [thirdMember, setThirdMember] = useState({ name: '' });
+    const [teamMembers, setTeamMembers] = useState([{ name: '' }, { name: '' }, { name: '' }]);
 
     let navigate = useNavigate();
 
@@ -24,18 +22,8 @@ function App() {
             <button onClick={redirectToHome}>Home</button>
             <button onClick={redirectToRecruitment}>Recruitment</button>
             <Routes>
-                <Route path='/' element={<Home firstMember={firstMember}
-                                               secondMember={secondMember}
-                                               thirdMember={thirdMember}
-                                               setFirstMember={setFirstMember}
-                                               setSecondMember={setSecondMember}
-                                               setThirdMember={setThirdMember} />} />
-                <Route path='/recruitment' element={<HeroRecruitment firstMember={firstMember}
-                                                                     secondMember={secondMember}
-                                                                     thirdMember={thirdMember}
-                                                                     setFirstMember={setFirstMember}
-                                                                     setSecondMember={setSecondMember}
-                                                                     setThirdMember={setThirdMember} />} />
+                <Route path='/' element={<Home teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
+                <Route path='/recruitment' element={<HeroRecruitment teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
             </Routes>
         </div>
   );
