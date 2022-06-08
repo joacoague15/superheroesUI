@@ -4,6 +4,9 @@ export interface IteamMemberObject {
 
 export interface IteamMember {
     name: string;
+    indexOfCurrentMember?: number;
+    teamMembers?: { name: string }[];
+    setTeamMembers?: Function;
 }
 
 export interface IallTeamMembers {

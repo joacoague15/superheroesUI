@@ -1,10 +1,9 @@
-import { IteamMember } from "../../types";
-
-const TeamMember = (props: IteamMember) => {
-    const  { name } = props;
+const TeamMember = (props: any) => {
+    const  { name, indexOfCurrentMember, teamMembers, setTeamMembers } = props;
 
     const removeTeamMember = () => {
-        console.log('Member team removed')
+        const newTeamStatus = teamMembers.filter((member: any) => indexOfCurrentMember !== teamMembers.indexOf(member));
+        setTeamMembers(newTeamStatus);
     }
 
     const displayRemoveButton = () => {
