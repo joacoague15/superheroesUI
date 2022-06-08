@@ -2,6 +2,7 @@
 
 import { IallTeamMembers, IteamMemberObject } from "../../types";
 import TeamMember from "./TeamMember";
+import { useEffect } from "react";
 
 const Home = (props: IallTeamMembers) => {
     const { teamMembers, setTeamMembers } = props;
@@ -16,6 +17,10 @@ const Home = (props: IallTeamMembers) => {
     //     setTeamMembers(parsedStoredTeam)
     //     // eslint-disable-next-line
     // }, [])
+
+    useEffect(() => {
+        console.log(teamMembers)
+    }, [teamMembers])
 
     return (
         <div>

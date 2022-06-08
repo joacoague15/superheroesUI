@@ -5,7 +5,7 @@ import Home from "./components/home/Home";
 import HeroRecruitment from "./components/hero_recruitment/HeroRecruitment";
 
 function App() {
-    const [teamMembers, setTeamMembers] = useState([{ name: '' }, { name: '' }, { name: '' }]);
+    const [teamMembers, setTeamMembers] = useState([]);
 
     let navigate = useNavigate();
 

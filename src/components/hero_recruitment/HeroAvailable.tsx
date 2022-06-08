@@ -1,19 +1,25 @@
-import { IheroAvailable, IteamMember } from "../../types";
+import { IheroAvailable } from "../../types";
 
 const HeroAvailable = (props: IheroAvailable) => {
-    const { heroName, setTeamMembers  } = props;
+    const { heroName, teamMembers, setTeamMembers  } = props;
+
+    const MAX_AMOUNT_OF_MEMBERS = 3;
+
+    const isHeroAlreadyOnTeam = (heroName: string): boolean => {
+        let isAlreadyOnTeam = false;
+
+        for (const member of teamMembers) {
+            if (member.name === heroName) {
+                isAlreadyOnTeam = true;
+            }
+        }
+
+        return isAlreadyOnTeam;
+    }
 
     const recruitHero = () => {
-        let findFreeSpace = true;
-        setTeamMembers((team: []) => {
-            return team.map((member: IteamMember) => {
-                if (member.name === '' && findFreeSpace) {
-                    findFreeSpace = false;
-                    return {...member, name: heroName};
-                }
-                return member;
-            });
-        });
+        if (!isHeroAlreadyOnTeam(heroName) && teamMembers.length < MAX_AMOUNT_OF_MEMBERS)
+            setTeamMembers([...teamMembers, { name: heroName }]);
     }
 
     return (
