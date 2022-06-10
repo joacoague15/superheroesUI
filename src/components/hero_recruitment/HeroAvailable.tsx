@@ -9,17 +9,27 @@ const HeroAvailable = (props: IheroAvailable) => {
         let isAlreadyOnTeam = false;
 
         for (const member of teamMembers) {
-            if (member.name === heroName) {
-                isAlreadyOnTeam = true;
-            }
+            if (member.name === heroName)
+                isAlreadyOnTeam = true
         }
-
         return isAlreadyOnTeam;
     }
 
     const recruitHero = () => {
-        if (!isHeroAlreadyOnTeam(heroName) && teamMembers.length < MAX_AMOUNT_OF_MEMBERS)
+        const memberCanJoinTeam = !isHeroAlreadyOnTeam(heroName) && teamMembers.length < MAX_AMOUNT_OF_MEMBERS
+        const noMoreSpace = teamMembers.length === MAX_AMOUNT_OF_MEMBERS
+        const heroAlreadyOnTeam = isHeroAlreadyOnTeam(heroName)
+
+        if (memberCanJoinTeam) {
+            console.log('A HERO JOINED THE TEAM')
             setTeamMembers([...teamMembers, { name: heroName }]);
+        }
+
+        if (noMoreSpace)
+            console.log('THERE IS NO SPACE FOR THIS HERO')
+
+        if (heroAlreadyOnTeam)
+            console.log('HERO ALREADY ON TEAM')
     }
 
     return (
