@@ -4,6 +4,7 @@ import axios from "axios";
 import Searcher from "../Searcher";
 import HeroAvailable from "./HeroAvailable";
 import { IallTeamMembers, IteamMemberObject } from "../../types";
+import '../../styles/recruitmentStyle.css';
 
 const HeroRecruitment = (props: IallTeamMembers) => {
     const { teamMembers, setTeamMembers } = props;
@@ -52,11 +53,11 @@ const HeroRecruitment = (props: IallTeamMembers) => {
     }, []);
 
     return (
-        <div>
+        <div className='recruit-container'>
             <Searcher handleChange={handleChange} />
-            <div>
+            <div className='hero-container'>
                 {filteredHeroes && filteredHeroes.map((hero: IteamMemberObject, i: number) =>
-                    <HeroAvailable key={i} heroName={hero.name} teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
+                    <HeroAvailable key={i} heroName={hero.name} img={hero.img} teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
                 )}
             </div>
         </div>

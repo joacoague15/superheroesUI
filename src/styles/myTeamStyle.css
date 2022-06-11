@@ -1,0 +1,18 @@
+.team-container {
+    display: flex;
+    justify-content: center;
+}
+
+.member button {
+    width: 300px;
+    height: 300px;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.member img {
+    width: 300px;
+    height: 300px;
+}
+

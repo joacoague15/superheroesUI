@@ -1,5 +1,6 @@
 export interface IteamMemberObject {
     name: string;
+    img: string;
 }
 
 export interface IteamMember {
@@ -10,12 +11,17 @@ export interface IteamMember {
 }
 
 export interface IallTeamMembers {
-    teamMembers: { name: string }[];
+    teamMembers: { name: string, img: string }[];
     setTeamMembers: Function;
 }
 
 export interface IheroAvailable {
     heroName: string;
+    img: string;
     teamMembers: { name: string }[];
     setTeamMembers: Function;
+}
+
+export interface IModal {
+    openModal: boolean;
 }

@@ -1,0 +1,19 @@
+.hero-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+
+.hero-container button {
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.hero-container .img {
+    width: 150px;
+    height: 150px;
+    box-shadow: 5px 5px 5px black;
+}

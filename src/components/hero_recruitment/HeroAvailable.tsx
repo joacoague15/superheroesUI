@@ -1,7 +1,12 @@
 import { IheroAvailable } from "../../types";
+import '../../styles/recruitmentStyle.css';
+import Modal from "../Modal";
+import { useState } from "react";
 
 const HeroAvailable = (props: IheroAvailable) => {
-    const { heroName, teamMembers, setTeamMembers  } = props;
+    const { heroName, img, teamMembers, setTeamMembers  } = props;
+
+    const [modalOpened, setModalOpened] = useState(false);
 
     const MAX_AMOUNT_OF_MEMBERS = 3;
 
@@ -22,7 +27,8 @@ const HeroAvailable = (props: IheroAvailable) => {
 
         if (memberCanJoinTeam) {
             console.log('A HERO JOINED THE TEAM')
-            setTeamMembers([...teamMembers, { name: heroName }]);
+            setTeamMembers([...teamMembers, { name: heroName, img }])
+            closeModal()
         }
 
         if (noMoreSpace)
@@ -32,10 +38,21 @@ const HeroAvailable = (props: IheroAvailable) => {
             console.log('HERO ALREADY ON TEAM')
     }
 
+    const openModal = () => {
+        setModalOpened(true);
+    }
+
+    const closeModal = () => {
+        setModalOpened(false);
+    }
+
     return (
         <>
-            <h2>Name: {heroName}</h2>
-            <button onClick={recruitHero}>Recruit</button>
+            <button onClick={openModal}><img className='img' src={img} alt={img} /></button>
+            <Modal openModal={modalOpened} onClick={closeModal}>
+                <h2>{heroName}</h2>
+                <button onClick={recruitHero}>Recruit</button>
+            </Modal>
         </>
     )
 }
