@@ -1,13 +1,12 @@
 const Searcher = (props: any) => {
-    const { handleSubmit, handleChange, disabled } = props;
+    const { handleChange } = props;
 
     return (
         <div>
             <label>
-                Who do you want to recruit:
+                Search for the hero you want to recruit:
                 <input onChange={handleChange} type="text" name="name" />
             </label>
-            <input disabled={disabled} onClick={handleSubmit} type="submit" value="Submit" />
         </div>
         )
 }
