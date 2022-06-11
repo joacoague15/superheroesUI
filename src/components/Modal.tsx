@@ -1,4 +1,5 @@
 import '../styles/modalStyle.css';
+import '../styles/buttonStyle.css';
 
 const Modal = (props: any) => {
     const { openModal, onClick } = props;

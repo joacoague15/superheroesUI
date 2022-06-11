@@ -1,6 +1,7 @@
 import '../../styles/myTeamStyle.css';
+import '../../styles/buttonStyle.css';
 import Modal from "../Modal";
-import {useState} from "react";
+import { useState } from "react";
 
 const TeamMember = (props: any) => {
     const  { name, img, indexOfCurrentMember, teamMembers, setTeamMembers } = props;
@@ -14,7 +15,7 @@ const TeamMember = (props: any) => {
     }
 
     const displayRemoveButton = () => {
-        return name && <button onClick={removeTeamMember}>Remove {name} from the team</button>
+        return name && <button className='button' onClick={removeTeamMember}>Remove {name} from the team</button>
     }
 
     const openModal = () => {
@@ -27,7 +28,7 @@ const TeamMember = (props: any) => {
 
     return(
         <div className='member'>
-            <button onClick={openModal}><img src={img} alt={img} /></button>
+            <button id='member-button' onClick={openModal}><img src={img} alt={img} /></button>
             <Modal openModal={modalOpened} onClick={closeModal}>
                 <h2>{name}</h2>
                 {displayRemoveButton()}

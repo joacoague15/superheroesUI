@@ -1,5 +1,6 @@
 import { IheroAvailable } from "../../types";
 import '../../styles/recruitmentStyle.css';
+import '../../styles/buttonStyle.css';
 import Modal from "../Modal";
 import { useState } from "react";
 
@@ -51,7 +52,7 @@ const HeroAvailable = (props: IheroAvailable) => {
             <button onClick={openModal}><img className='img' src={img} alt={img} /></button>
             <Modal openModal={modalOpened} onClick={closeModal}>
                 <h2>{heroName}</h2>
-                <button onClick={recruitHero}>Recruit</button>
+                <button className='button' onClick={recruitHero}>Recruit</button>
             </Modal>
         </>
     )
