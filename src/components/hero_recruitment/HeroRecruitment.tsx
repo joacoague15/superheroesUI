@@ -57,7 +57,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
             <Searcher handleChange={handleChange} />
             <div className='hero-container'>
                 {filteredHeroes && filteredHeroes.map((hero: IteamMemberObject, i: number) =>
-                    <HeroAvailable key={i} heroName={hero.name} img={hero.img} teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
+                    <HeroAvailable key={i} id={hero.id!} heroName={hero.name} img={hero.img} teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
                 )}
             </div>
         </div>

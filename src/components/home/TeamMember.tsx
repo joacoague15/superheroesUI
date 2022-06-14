@@ -4,7 +4,7 @@ import Modal from "../Modal";
 import { useState } from "react";
 
 const TeamMember = (props: any) => {
-    const  { name, img, indexOfCurrentMember, teamMembers, setTeamMembers } = props;
+    const  { name, img, power, durability, intelligence, indexOfCurrentMember, teamMembers, setTeamMembers } = props;
 
     const [modalOpened, setModalOpened] = useState(false);
 
@@ -31,6 +31,11 @@ const TeamMember = (props: any) => {
             <button id='member-button' onClick={openModal}><img src={img} alt={img} /></button>
             <Modal openModal={modalOpened} onClick={closeModal}>
                 <h2>{name}</h2>
+                <ul>
+                    <li><b>Power: </b>{power}</li>
+                    <li><b>Durability: </b>{durability}</li>
+                    <li><b>Intelligence: </b>{intelligence}</li>
+                </ul>
                 {displayRemoveButton()}
             </Modal>
         </div>

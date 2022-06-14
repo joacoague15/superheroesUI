@@ -3,10 +3,12 @@ import '../../styles/recruitmentStyle.css';
 import '../../styles/buttonStyle.css';
 import Modal from "../Modal";
 import { useState } from "react";
+import axios from "axios";
 
 const HeroAvailable = (props: IheroAvailable) => {
-    const { heroName, img, teamMembers, setTeamMembers  } = props;
+    const { id, heroName, img, teamMembers, setTeamMembers  } = props;
 
+    const [heroStats, setHeroStats] = useState<any>();
     const [modalOpened, setModalOpened] = useState(false);
 
     const MAX_AMOUNT_OF_MEMBERS = 3;
@@ -28,7 +30,7 @@ const HeroAvailable = (props: IheroAvailable) => {
 
         if (memberCanJoinTeam) {
             console.log('A HERO JOINED THE TEAM')
-            setTeamMembers([...teamMembers, { name: heroName, img }])
+            setTeamMembers([...teamMembers, { id, name: heroName, img, power: heroStats.power, durability: heroStats.durability, intelligence: heroStats.intelligence }])
             closeModal()
         }
 
@@ -40,7 +42,11 @@ const HeroAvailable = (props: IheroAvailable) => {
     }
 
     const openModal = () => {
-        setModalOpened(true);
+        axios.get(`http://localhost:4000/heroes/${id}/stats`, {
+        }).then(response => {
+            setHeroStats(response.data)
+            setModalOpened(true)
+        })
     }
 
     const closeModal = () => {
@@ -52,6 +58,11 @@ const HeroAvailable = (props: IheroAvailable) => {
             <button onClick={openModal}><img className='img' src={img} alt={img} /></button>
             <Modal openModal={modalOpened} onClick={closeModal}>
                 <h2>{heroName}</h2>
+                <ul>
+                    <li><b>Power: </b>{heroStats?.power}</li>
+                    <li><b>Durability: </b>{heroStats?.durability}</li>
+                    <li><b>Intelligence: </b>{heroStats?.intelligence}</li>
+                </ul>
                 <button className='button' onClick={recruitHero}>Recruit</button>
             </Modal>
         </>

@@ -8,7 +8,7 @@ const Home = (props: IallTeamMembers) => {
     return (
         <div className='team-container'>
             {teamMembers && teamMembers.map((member: IteamMemberObject, i: number) =>
-                member.name && <TeamMember key={i} name={member.name} img={member.img} indexOfCurrentMember={i} teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
+                member.name && <TeamMember key={i} name={member.name} img={member.img} power={member.power} durability={member.durability} intelligence={member.intelligence} indexOfCurrentMember={i} teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
             )}
         </div>
     )
