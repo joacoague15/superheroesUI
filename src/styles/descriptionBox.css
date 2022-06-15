@@ -1,0 +1,8 @@
+.description {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    background-color: lightblue;
+    width: 50%;
+    font-weight: bold;
+}
