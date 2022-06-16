@@ -1,5 +1,10 @@
 #searcher {
+    display: flex;
+    justify-content: center;
+    background-color: lightblue;
+    border: solid 2px #000;
     outline: none;
-    margin: 10px;
-    box-shadow: 5px 5px 5px black;
+    margin: auto;
+    border-radius: 2px;
+    width: 20%;
 }

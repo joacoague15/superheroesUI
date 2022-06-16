@@ -4,5 +4,7 @@
     margin: auto;
     background-color: lightblue;
     width: 50%;
+    font-family: "Comic Sans MS", "arial", "cursive";
+    font-size: 16px;
     font-weight: bold;
 }

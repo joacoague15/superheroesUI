@@ -2,14 +2,15 @@
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
-
-.hero-container button {
+.hero-button {
     border: none;
     cursor: pointer;
-    outline: inherit;
+    outline: none;
+    margin-top: 5px;
+    background-color: white;
 }
 
 .hero-container .img {

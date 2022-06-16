@@ -55,7 +55,7 @@ const HeroAvailable = (props: IheroAvailable) => {
 
     return (
         <>
-            <button onClick={openModal}><img className='img' src={img} alt={img} /></button>
+            <button className='hero-button' onClick={openModal}><img className='img' src={img} alt={img} /></button>
             <Modal openModal={modalOpened} onClick={closeModal}>
                 <h2>{heroName}</h2>
                 <ul>
