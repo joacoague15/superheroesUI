@@ -4,6 +4,7 @@ import '../../styles/buttonStyle.css';
 import Modal from "../Modal";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const HeroAvailable = (props: IheroAvailable) => {
     const { id, heroName, img, teamMembers, setTeamMembers  } = props;
@@ -23,22 +24,26 @@ const HeroAvailable = (props: IheroAvailable) => {
         return isAlreadyOnTeam;
     }
 
+    const showSnackBar = (text: string) => {
+        toast(text, { position: toast.POSITION.BOTTOM_RIGHT })
+    }
+
     const recruitHero = () => {
         const memberCanJoinTeam = !isHeroAlreadyOnTeam(heroName) && teamMembers.length < MAX_AMOUNT_OF_MEMBERS
         const noMoreSpace = teamMembers.length === MAX_AMOUNT_OF_MEMBERS
         const heroAlreadyOnTeam = isHeroAlreadyOnTeam(heroName)
 
         if (memberCanJoinTeam) {
-            console.log('A HERO JOINED THE TEAM')
+            showSnackBar(`${heroName} joined the team!`)
             setTeamMembers([...teamMembers, { id, name: heroName, img, power: heroStats.power, durability: heroStats.durability, intelligence: heroStats.intelligence }])
             closeModal()
         }
 
         if (noMoreSpace)
-            console.log('THERE IS NO SPACE FOR THIS HERO')
+            showSnackBar(`There is no space for ${heroName}`)
 
         if (heroAlreadyOnTeam)
-            console.log('HERO ALREADY ON TEAM')
+            showSnackBar(`${heroName} is already on the team`)
     }
 
     const openModal = () => {
