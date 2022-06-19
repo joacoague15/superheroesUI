@@ -10,7 +10,7 @@
     cursor: pointer;
     outline: none;
     margin-top: 5px;
-    background-color: white;
+    background: none;
 }
 
 .hero-container .img {

@@ -12,16 +12,15 @@ const Home = (props: IallTeamMembers) => {
         let powerOfTeam = 0;
         let durabilityOfTeam = 0;
         let intelligenceOfTeam = 0;
-        teamMembers.map((member: any) => {
+
+        for (const member of teamMembers) {
             powerOfTeam += member.power
             durabilityOfTeam += member.durability
             intelligenceOfTeam += member.intelligence
-            return null
-        })
-
+        }
         setStatsOfAllTheTeam({ ...statsOfAllTheTeam, power: powerOfTeam, durability: durabilityOfTeam, intelligence: intelligenceOfTeam })
-
-    }, [statsOfAllTheTeam, teamMembers])
+        //eslint-disable-next-line
+    }, [teamMembers])
 
     return (
         <div className='home-container' >
