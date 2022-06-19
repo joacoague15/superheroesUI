@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Routes, Route, useNavigate} from 'react-router-dom';
+import { ToastContainer } from "react-toastify";
 
 import Home from "./components/home/Home";
 import HeroRecruitment from "./components/hero_recruitment/HeroRecruitment";
 import './styles/buttonStyle.css';
-import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/toastContainerStyle.css';
 

@@ -31,11 +31,18 @@ const Home = (props: IallTeamMembers) => {
                     )}
             </div>
             <DescriptionBox>
-                <ul>
-                    <li>Power: { statsOfAllTheTeam.power }</li>
-                    <li>Durability: { statsOfAllTheTeam.durability }</li>
-                    <li>Intelligence: { statsOfAllTheTeam.intelligence }</li>
-                </ul>
+                <div className="single-stat-container">
+                    <h2>Power</h2>
+                    <h2>{ statsOfAllTheTeam.power }</h2>
+                </div>
+                <div className="single-stat-container">
+                    <h2>Durability</h2>
+                    <h2>{ statsOfAllTheTeam.durability }</h2>
+                </div>
+                <div className="single-stat-container">
+                    <h2>Intelligence</h2>
+                    <h2>{ statsOfAllTheTeam.intelligence }</h2>
+                </div>
             </DescriptionBox>
         </div>
     )

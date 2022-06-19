@@ -2,7 +2,7 @@ import '../../styles/myTeamStyle.css';
 import '../../styles/buttonStyle.css';
 import Modal from "../Modal";
 import { useState } from "react";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 const TeamMember = (props: any) => {
     const  { name, img, power, durability, intelligence, indexOfCurrentMember, teamMembers, setTeamMembers } = props;

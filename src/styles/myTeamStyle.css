@@ -24,3 +24,9 @@
     box-shadow: 5px 5px 5px black;
 }
 
+.single-stat-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+}

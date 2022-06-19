@@ -1,7 +1,7 @@
 #searcher {
     display: flex;
     justify-content: center;
-    background-color: lightblue;
+    background-color: white;
     border: solid 2px #000;
     outline: none;
     margin: auto;
