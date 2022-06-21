@@ -5,7 +5,7 @@ const Searcher = (props: any) => {
 
     return (
         <div>
-            <input id='searcher' onChange={handleChange} type="text" name="name" />
+            <input id='searcher' placeholder='Search your hero...' onChange={handleChange} type="text" name="name" />
         </div>
         )
 }

@@ -28,15 +28,23 @@ const TeamMember = (props: any) => {
         setModalOpened(false)
     }
 
+    const colorHandler = (stat: number) => {
+        if (stat < 80)
+            return 'black-text'
+        if (stat < 90)
+            return 'yellow-text'
+        return 'green-text'
+    }
+
     return(
         <div className='member'>
             <button id='member-button' onClick={openModal}><img src={img} alt={img} /></button>
             <Modal openModal={modalOpened} onClick={closeModal}>
                 <h2>{name}</h2>
-                <ul>
-                    <li><b>Power: </b>{power}</li>
-                    <li><b>Durability: </b>{durability}</li>
-                    <li><b>Intelligence: </b>{intelligence}</li>
+                <ul className='member-stats-list'>
+                    <li><b>Power: </b><span className={colorHandler(power)}>{power}</span></li>
+                    <li><b>Durability: </b><span className={colorHandler(durability)}>{durability}</span></li>
+                    <li><b>Intelligence: </b><span className={colorHandler(intelligence)}>{intelligence}</span></li>
                 </ul>
                 {displayRemoveButton()}
             </Modal>

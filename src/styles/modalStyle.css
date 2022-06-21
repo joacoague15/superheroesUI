@@ -17,6 +17,7 @@
     font-family: "Comic Sans MS", "arial", "cursive";
     font-size: 16px;
     max-width: 640px;
+    text-align: center;
     background-color: #FFF;
 }
 
@@ -34,5 +35,4 @@
     width: fit-content;
     height: fit-content;
 }
-
 

@@ -58,15 +58,23 @@ const HeroAvailable = (props: IheroAvailable) => {
         setModalOpened(false);
     }
 
+    const colorHandler = (stat: number) => {
+        if (stat < 80)
+            return 'black-text'
+        if (stat < 90)
+            return 'yellow-text'
+        return 'green-text'
+    }
+
     return (
         <>
             <button className='hero-button' onClick={openModal}><img className='img' src={img} alt={img} /></button>
             <Modal openModal={modalOpened} onClick={closeModal}>
                 <h2>{heroName}</h2>
-                <ul>
-                    <li><b>Power: </b>{heroStats?.power}</li>
-                    <li><b>Durability: </b>{heroStats?.durability}</li>
-                    <li><b>Intelligence: </b>{heroStats?.intelligence}</li>
+                <ul className='member-stats-list'>
+                    <li><b>Power: </b><span className={colorHandler(heroStats?.power)}>{heroStats?.power}</span></li>
+                    <li><b>Durability: </b><span className={colorHandler(heroStats?.durability)}>{heroStats?.durability}</span></li>
+                    <li><b>Intelligence: </b><span className={colorHandler(heroStats?.intelligence)}>{heroStats?.intelligence}</span></li>
                 </ul>
                 <button className='button' onClick={recruitHero}>Recruit</button>
             </Modal>

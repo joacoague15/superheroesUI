@@ -22,6 +22,11 @@
     height: 300px;
     margin-bottom: 20px;
     box-shadow: 5px 5px 5px black;
+    transition: 0.2s ease;
+}
+
+.member img:hover {
+    transform: scale(1.02);
 }
 
 .single-stat-container {
@@ -30,3 +35,20 @@
     margin: auto;
     text-align: center;
 }
+
+.member-stats-list {
+    list-style-type: none;
+}
+
+.black-text {
+    color: black;
+}
+
+.yellow-text {
+    color: goldenrod;
+}
+
+.green-text {
+    color: green;
+}
+
