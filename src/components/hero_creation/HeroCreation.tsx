@@ -38,7 +38,7 @@ const HeroCreation = () => {
                 <input type='number' onChange={(e: any) => setNewHeroIntelligence(e.target.value)} placeholder='1-100' className='creation-text-input' name='hero-intelligence' />
             </label>
             <label htmlFor='hero-img-link'>
-                <span className='creation-span'>Intelligence</span>
+                <span className='creation-span'>Image</span>
                 <input type='text' onChange={(e: any) => setNewHeroImgLink(e.target.value)} placeholder='Paste an image link here' className='creation-text-input' name='hero-img-link' />
             </label>
             <button type='submit' className='submit-button'>Create new hero</button>
