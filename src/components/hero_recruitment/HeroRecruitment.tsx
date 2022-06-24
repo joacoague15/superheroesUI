@@ -5,6 +5,7 @@ import Searcher from "../Searcher";
 import HeroAvailable from "./HeroAvailable";
 import { IallTeamMembers, IteamMemberObject } from "../../types";
 import '../../styles/recruitmentStyle.css';
+import '../../styles/searcherStyle.css';
 
 const HeroRecruitment = (props: IallTeamMembers) => {
     const { teamMembers, setTeamMembers } = props;
@@ -54,7 +55,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
 
     return (
         <div className='recruit-container'>
-            <Searcher handleChange={handleChange} />
+            <Searcher type='text' className='searcher' handleChange={handleChange} placeHolder='Search your hero...' />
             <div className='hero-container'>
                 {filteredHeroes && filteredHeroes.map((hero: IteamMemberObject, i: number) =>
                     <HeroAvailable key={i} id={hero.id!} heroName={hero.name} img={hero.img} teamMembers={teamMembers} setTeamMembers={setTeamMembers} />

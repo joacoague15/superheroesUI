@@ -6,4 +6,22 @@
     font-family: "Comic Sans MS", "arial", "cursive";
     font-size: 16px;
     cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.submit-button {
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px auto;
+    border: 2px solid black;
+    width: fit-content;
+    font-family: "Comic Sans MS", "arial", "cursive";
+    font-size: 16px;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+button:hover, .submit-button:hover {
+    background-color: whitesmoke;
 }

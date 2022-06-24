@@ -1,11 +1,9 @@
-import '../styles/searcherStyle.css';
-
 const Searcher = (props: any) => {
-    const { handleChange } = props;
+    const { handleChange, placeHolder, className, type } = props;
 
     return (
         <div>
-            <input id='searcher' placeholder='Search your hero...' onChange={handleChange} type="text" name="name" />
+            <input className={className} placeholder={placeHolder} onChange={handleChange} type={type} />
         </div>
         )
 }
