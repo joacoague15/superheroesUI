@@ -8,6 +8,7 @@ const HeroCreation = () => {
     const [newHeroPower, setNewHeroPower] = useState('');
     const [newHeroDurability, setNewHeroDurability] = useState('');
     const [newHeroIntelligence, setNewHeroIntelligence] = useState('');
+    const [newHeroImgLink, setNewHeroImgLink] = useState('')
 
     const createNewHero = (e: any) => {
         e.preventDefault()
@@ -15,6 +16,7 @@ const HeroCreation = () => {
         console.log('HERO POWER: ', newHeroPower)
         console.log('HERO DURABILITY: ', newHeroDurability)
         console.log('HERO INTELLIGENCE: ', newHeroIntelligence)
+        console.log('HERO LINK: ', newHeroImgLink)
     }
 
     return (
@@ -34,6 +36,10 @@ const HeroCreation = () => {
             <label htmlFor='hero-intelligence'>
                 <span className='creation-span'>Intelligence</span>
                 <input type='number' onChange={(e: any) => setNewHeroIntelligence(e.target.value)} placeholder='1-100' className='creation-text-input' name='hero-intelligence' />
+            </label>
+            <label htmlFor='hero-img-link'>
+                <span className='creation-span'>Intelligence</span>
+                <input type='text' onChange={(e: any) => setNewHeroImgLink(e.target.value)} placeholder='Paste an image link here' className='creation-text-input' name='hero-img-link' />
             </label>
             <button type='submit' className='submit-button'>Create new hero</button>
         </form>
