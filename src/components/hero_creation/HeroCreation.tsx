@@ -3,32 +3,49 @@ import '../../styles/buttonStyle.css';
 
 import { useState } from "react";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 const HeroCreation = () => {
     const [createdHeroName, setCreatedHeroName] = useState('');
     const [createdHeroPower, setCreatedHeroPower] = useState('');
     const [createdHeroDurability, setCreatedHeroDurability] = useState('');
     const [createdHeroIntelligence, setCreatedHeroIntelligence] = useState('');
-    const [createdHeroImgLink, setCreatedHeroImgLink] = useState('')
+    const [createdHeroImgLink, setCreatedHeroImgLink] = useState('');
+
+    const nameErrorMessage = 'The hero name length is not the one expected'
+    const statErrorMessage= 'There is at least one stat value that is not between 1 and 100'
+    const succesMessage= 'Hero created succesfully'
+
+    const isNameValid = () => {
+        if (!createdHeroName || createdHeroName.length < 1 || createdHeroName.length > 50) {
+            toast.error(nameErrorMessage, { position: toast.POSITION.BOTTOM_RIGHT })
+            return false
+        }
+        return true
+    }
+
+    const isStatValid = (stat: string) => {
+        const statNumber = parseInt(stat)
+        if (!stat || statNumber < 1 || statNumber > 100) {
+            toast.error(statErrorMessage, { position: toast.POSITION.BOTTOM_RIGHT })
+            return false
+        }
+        return true
+    }
 
     const createNewHero = (e: any) => {
         e.preventDefault()
 
-        axios.post('http://localhost:4000/heroes/create', {
-            name: createdHeroName,
-            power: createdHeroPower,
-            durability: createdHeroDurability,
-            intelligence: createdHeroIntelligence,
-            imgLink: createdHeroImgLink
-        })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
-
-        console.log('HERO NAME: ', createdHeroName)
-        console.log('HERO POWER: ', createdHeroPower)
-        console.log('HERO DURABILITY: ', createdHeroDurability)
-        console.log('HERO INTELLIGENCE: ', createdHeroIntelligence)
-        console.log('HERO LINK: ', createdHeroImgLink)
+        if (isNameValid() && isStatValid(createdHeroPower) && isStatValid(createdHeroDurability) && isStatValid(createdHeroIntelligence))
+            axios.post('http://localhost:4000/heroes/create', {
+                name: createdHeroName,
+                power: createdHeroPower,
+                durability: createdHeroDurability,
+                intelligence: createdHeroIntelligence,
+                imgLink: createdHeroImgLink
+            })
+                .then(() => toast.success(succesMessage, { position: toast.POSITION.BOTTOM_RIGHT }))
+                .catch(err => console.log(err))
     }
 
     return (
