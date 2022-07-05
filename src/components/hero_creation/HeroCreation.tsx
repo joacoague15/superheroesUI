@@ -9,6 +9,7 @@ import { v4 } from 'uuid';
 
 import axios from "axios";
 import { toast } from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 const HeroCreation = () => {
     const [createdHeroName, setCreatedHeroName] = useState('');
@@ -17,26 +18,36 @@ const HeroCreation = () => {
     const [createdHeroIntelligence, setCreatedHeroIntelligence] = useState('');
     const [createdHeroImgFile, setCreatedHeroImgFile] = useState<any>({});
     const [imgURL, setImgURL] = useState('');
+    const [uploadingFile, setUploadingFile] = useState(false);
+
+    const isFileUploaded = imgURL !== ''
+    const submitText = uploadingFile ? 'Uploading file...' : 'Create new hero'
 
     const nameErrorMessage = 'The hero name length is not the one expected'
     const statErrorMessage= 'There is at least one stat value that is not between 1 and 100'
-    const succesMessage= 'Hero created succesfully'
+    const succesMessage = 'Hero created succesfully'
+    const heroCreationError = 'There was an error on the creation hero process'
+
+    let navigate = useNavigate()
 
     useEffect(() => {
-        if (createdHeroImgFile !== {}) {
-            const imageRef = ref(storage, `recruitmentImages/${createdHeroImgFile.name + v4()}`, )
+        const isThereAnUploadedFile = createdHeroImgFile !== undefined && createdHeroImgFile.name
+        console.log(createdHeroImgFile)
+
+        if (isThereAnUploadedFile) {
+            setUploadingFile(true)
+            const imageRef = ref(storage, `recruitmentImages/${createdHeroImgFile!.name + v4()}`, )
             uploadBytes(imageRef, createdHeroImgFile)
                 .then(() => {
                     getDownloadURL(imageRef)
-                        .then(res => setImgURL(res))
+                        .then(res => {
+                            setImgURL(res)
+                            setUploadingFile(false)
+                        })
                         .catch(err => console.log(err))
                 })
         }
     }, [createdHeroImgFile])
-
-    useEffect(() => {
-        console.log('IMG URL: ', imgURL)
-    }, [imgURL])
 
     const isNameValid = () => {
         if (!createdHeroName || createdHeroName.length < 1 || createdHeroName.length > 50) {
@@ -55,8 +66,6 @@ const HeroCreation = () => {
         return true
     }
 
-
-
     const createNewHero = (e: any) => {
         e.preventDefault()
 
@@ -68,8 +77,14 @@ const HeroCreation = () => {
                 intelligence: createdHeroIntelligence,
                 imgURL: imgURL
             })
-                .then(() => toast.success(succesMessage, { position: toast.POSITION.BOTTOM_RIGHT }))
-                .catch(err => console.log(err))
+                .then(() => {
+                    toast.success(succesMessage, { position: toast.POSITION.BOTTOM_RIGHT })
+                    navigate('/recruitment');
+                })
+                .catch(err => {
+                    console.log(err)
+                    toast.error(heroCreationError, { position: toast.POSITION.BOTTOM_RIGHT })
+                })
     }
 
     return (
@@ -92,9 +107,9 @@ const HeroCreation = () => {
             </label>
             <label htmlFor='hero-img-file'>
                 <span className='creation-span'>Image</span>
-                <input type='file' onChange={(e: any) => setCreatedHeroImgFile(e.target.files[0])} placeholder='Paste an image link here' className='creation-text-input' name='hero-img-file' />
+                <input id='hi' type='file' onChange={(e: any) => setCreatedHeroImgFile(e.target.files[0])} placeholder='Paste an image link here' className='creation-text-input' name='hero-img-file' />
             </label>
-            <button type='submit' className='submit-button'>Create new hero</button>
+            <button disabled={!isFileUploaded} type='submit' className='submit-button'>{submitText}</button>
         </form>
     )
 }

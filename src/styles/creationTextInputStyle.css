@@ -9,7 +9,7 @@ input::-webkit-inner-spin-button {
     flex-wrap: wrap;
     text-align: center;
     flex-direction: column;
-    width: 30%;
+    width: 20%;
     margin: auto;
 }
 
@@ -28,6 +28,7 @@ input::-webkit-inner-spin-button {
 }
 
 .creation-span, .creation-text-input {
+    font-size: 18px;
     font-family: "Comic Sans MS", "arial", "cursive";
     font-weight: bold;
 }
@@ -35,3 +36,4 @@ input::-webkit-inner-spin-button {
 .creation-text-input:hover {
     background-color: whitesmoke;
 }
+

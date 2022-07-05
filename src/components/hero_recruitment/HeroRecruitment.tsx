@@ -29,7 +29,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
     }
 
     const handleChange = (e: any) => {
-        const nameSearched = e.target.value;
+        const nameSearched = e.target.value.toLowerCase();
 
         if (nameSearched) {
             const filterHeroResult = fetchedAllHeroes.filter((hero: IteamMemberObject) => hero.name.toLowerCase().includes(nameSearched));
