@@ -25,3 +25,8 @@
 button:hover, .submit-button:hover {
     background-color: whitesmoke;
 }
+
+.more-heroes-wrapper {
+    text-align: center;
+    margin-top: 10px;
+}

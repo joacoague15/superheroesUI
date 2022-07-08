@@ -30,3 +30,9 @@ export interface IheroAvailable {
 export interface IModal {
     openModal: boolean;
 }
+
+export interface Ibutton {
+    onClick: any;
+    text: string;
+    className: string;
+}
