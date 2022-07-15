@@ -10,3 +10,23 @@
     font-size: 16px;
     font-weight: bold;
 }
+
+.description {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    background-color: white;
+    border-radius: 2px;
+    width: 50%;
+    border: 4px solid black;
+    font-family: "Comic Sans MS", "arial", "cursive";
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@media (max-width:641px)  {
+    .description {
+        width: 80%;
+        font-size: 12px;
+    }
+}

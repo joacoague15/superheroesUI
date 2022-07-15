@@ -52,3 +52,9 @@
     color: green;
 }
 
+@media (max-width:641px)  {
+    .member img {
+        width: 100px;
+        height: 100px;
+    }
+}

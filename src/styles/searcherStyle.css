@@ -9,3 +9,10 @@
     border-radius: 2px;
     width: 20%;
 }
+
+@media (max-width:641px)  {
+    .searcher {
+        width: 60%;
+        margin: 20px auto;
+    }
+}

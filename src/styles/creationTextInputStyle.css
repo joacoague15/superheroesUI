@@ -21,7 +21,7 @@ input::-webkit-inner-spin-button {
 .creation-text-input {
     width: 100%;
     text-align: center;
-    margin: 5px auto;
+    margin: 2px auto;
     border: 2px solid black;
     outline: none;
     transition: 0.4s ease;
@@ -35,5 +35,11 @@ input::-webkit-inner-spin-button {
 
 .creation-text-input:hover {
     background-color: whitesmoke;
+}
+
+@media (max-width:641px)  {
+    .creation-form-wrapper {
+        width: 60%;
+    }
 }
 
