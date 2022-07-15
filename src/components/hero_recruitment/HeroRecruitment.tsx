@@ -44,7 +44,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
     const fetchMoreHeroesButton = () => {
         if (isFetchingFinished)
             return <Button className='button' onClick={addPage} text='See more Heroes' />
-        return <ReactLoading className='react-loading' type='spin' color='black' height='5%' width='5%' />
+        return <ReactLoading className='react-loading' type='spin' color='black' height='25px' width='25px' />
     }
 
     useEffect(() => {
