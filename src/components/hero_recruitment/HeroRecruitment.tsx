@@ -16,6 +16,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
     const [filteredHeroes, setFilteredHeroes] = useState<any>([]);
     const [nameSearched, setNameSearched] = useState('');
     const [page, setPage] = useState(1);
+    const [noMoreHeroesToFetch, setNoMoreHeroesToFetch] =  useState(false);
 
     const PAGE_SIZE = 5
 
@@ -46,7 +47,10 @@ const HeroRecruitment = (props: IallTeamMembers) => {
         })
             .then(response => {
                 const responseData = response.data
-                console.log('RESPONSE DATA: ', responseData)
+
+                if (responseData.length < PAGE_SIZE)
+                    setNoMoreHeroesToFetch(true)
+
                 setFetchedHeroes([...fetchedHeroes, ...responseData])
                 setFilteredHeroes([...fetchedHeroes, ...responseData])
             })
@@ -65,7 +69,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
                 )}
             </div>
             <div className='more-heroes-wrapper'>
-                <Button className='button' onClick={addPage} text='See more Heroes' />
+                {!noMoreHeroesToFetch &&  <Button className='button' onClick={addPage} text='See more Heroes' />}
             </div>
         </div>
     )
