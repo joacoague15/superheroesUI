@@ -11,6 +11,7 @@ const HeroAvailable = (props: IheroAvailable) => {
 
     const [heroStats, setHeroStats] = useState<any>();
     const [modalOpened, setModalOpened] = useState(false);
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
 
     const MAX_AMOUNT_OF_MEMBERS = 3;
 
@@ -66,9 +67,13 @@ const HeroAvailable = (props: IheroAvailable) => {
         return 'green-text'
     }
 
+    const imgLoading = {
+        display: !isImageLoaded ? 'none' : 'flex',
+    }
+
     return (
         <>
-            <button className='hero-button' onClick={openModal}><img className='img' src={img} alt={img} /></button>
+            <button style={imgLoading} className='hero-button' onClick={openModal}><img onLoad={() => setIsImageLoaded(true)} className='img' src={img} alt={img} /></button>
             <Modal openModal={modalOpened} onClick={closeModal}>
                 <h2>{heroName}</h2>
                 <ul className='member-stats-list'>

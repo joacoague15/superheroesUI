@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ReactLoading from 'react-loading';
 
 import Searcher from "../Searcher";
 import HeroAvailable from "./HeroAvailable";
@@ -7,6 +8,7 @@ import { IallTeamMembers, IteamMemberObject } from "../../types";
 import '../../styles/recruitmentStyle.css';
 import '../../styles/searcherStyle.css';
 import '../../styles/buttonStyle.css';
+import '../../styles/reactLoadingStyle.css';
 import Button from "../Button";
 
 const HeroRecruitment = (props: IallTeamMembers) => {
@@ -17,6 +19,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
     const [nameSearched, setNameSearched] = useState('');
     const [page, setPage] = useState(1);
     const [noMoreHeroesToFetch, setNoMoreHeroesToFetch] =  useState(false);
+    const [isFetchingFinished, setIsFetchingFinished] = useState(true);
 
     const PAGE_SIZE = 5
 
@@ -38,7 +41,14 @@ const HeroRecruitment = (props: IallTeamMembers) => {
         setNameSearched('') // Restore search filter
     }
 
+    const fetchMoreHeroesButton = () => {
+        if (isFetchingFinished)
+            return <Button className='button' onClick={addPage} text='See more Heroes' />
+        return <ReactLoading className='react-loading' type='spin' color='black' height='5%' width='5%' />
+    }
+
     useEffect(() => {
+        setIsFetchingFinished(false)
         axios.get('http://localhost:4000/heroes', {
             params: {
                 page: page,
@@ -46,6 +56,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
             }
         })
             .then(response => {
+                setIsFetchingFinished(true)
                 const responseData = response.data
 
                 if (responseData.length < PAGE_SIZE)
@@ -69,7 +80,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
                 )}
             </div>
             <div className='more-heroes-wrapper'>
-                {!noMoreHeroesToFetch &&  <Button className='button' onClick={addPage} text='See more Heroes' />}
+                { !noMoreHeroesToFetch &&  fetchMoreHeroesButton() }
             </div>
         </div>
     )

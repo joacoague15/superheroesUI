@@ -1,7 +1,9 @@
 import '../../styles/creationTextInputStyle.css';
 import '../../styles/buttonStyle.css';
+import '../../styles/reactLoadingStyle.css';
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import ReactLoading from 'react-loading';
 
 import { storage } from '../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -9,7 +11,7 @@ import { v4 } from 'uuid';
 
 import axios from "axios";
 import { toast } from "react-toastify";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const HeroCreation = () => {
     const [createdHeroName, setCreatedHeroName] = useState('');
@@ -87,6 +89,13 @@ const HeroCreation = () => {
                 })
     }
 
+    const creationButton = () => {
+        if (uploadingFile)
+            return <ReactLoading className='react-loading' type='spin' color='black' height='20%' width='20%' />
+        else
+            return <button disabled={!isFileUploaded} type='submit' className='submit-button'>{submitText}</button>
+    }
+
     return (
         <form onSubmit={createNewHero} className='creation-form-wrapper'>
             <label htmlFor='hero-name'>
@@ -109,7 +118,7 @@ const HeroCreation = () => {
                 <span className='creation-span'>Image</span>
                 <input id='hi' type='file' onChange={(e: any) => setCreatedHeroImgFile(e.target.files[0])} placeholder='Paste an image link here' className='creation-text-input' name='hero-img-file' />
             </label>
-            <button disabled={!isFileUploaded} type='submit' className='submit-button'>{submitText}</button>
+            { creationButton() }
         </form>
     )
 }
