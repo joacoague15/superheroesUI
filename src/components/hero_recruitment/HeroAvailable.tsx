@@ -48,7 +48,7 @@ const HeroAvailable = (props: IheroAvailable) => {
     }
 
     const openModal = () => {
-        axios.get(`http://localhost:4000/heroes/${id}/stats`, {
+        axios.get(`http://localhost:4000/${id}`, {
         }).then(response => {
             setHeroStats(response.data)
             setModalOpened(true)
@@ -70,7 +70,6 @@ const HeroAvailable = (props: IheroAvailable) => {
     const imgLoading = {
         display: !isImageLoaded ? 'none' : 'flex',
     }
-
     return (
         <>
             <button style={imgLoading} className='hero-button' onClick={openModal}><img onLoad={() => setIsImageLoaded(true)} className='img' src={img} alt={img} /></button>
