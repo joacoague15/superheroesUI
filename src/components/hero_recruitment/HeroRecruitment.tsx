@@ -16,7 +16,7 @@ const HeroRecruitment = (props: IallTeamMembers) => {
     const [page, _] = useState(1);
 
     useEffect(() => {
-        axios.get('http://localhost:4000', {
+        axios.get('http://localhost:4000/list', {
             params: {
                 page: page,
             }

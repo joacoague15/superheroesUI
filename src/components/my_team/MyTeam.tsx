@@ -4,11 +4,9 @@ import '../../styles/myTeamStyle.css';
 import DescriptionBox from "../DescriptionBox";
 import {useEffect, useState} from "react";
 
-const Home = (props: IallTeamMembers) => {
+const MyTeam = (props: IallTeamMembers) => {
     const { teamMembers, setTeamMembers } = props;
     const [statsOfAllTheTeam, setStatsOfAllTheTeam] = useState({ power: 0, durability: 0, intelligence: 0 });
-
-
 
     const colorHandler = (stat: number) => {
         const lowTeamStats = stat < 200
@@ -60,4 +58,4 @@ const Home = (props: IallTeamMembers) => {
     )
 }
 
-export default Home;
+export default MyTeam;
