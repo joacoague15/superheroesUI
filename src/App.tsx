@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Routes, Route, useNavigate} from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
+import "antd/dist/antd.min.css";
 
 import Home from "./components/home/Home";
 import HeroRecruitment from "./components/hero_recruitment/HeroRecruitment";

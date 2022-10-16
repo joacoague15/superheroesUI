@@ -1,10 +1,10 @@
 import { IheroAvailable } from "../../types";
 import '../../styles/recruitmentStyle.css';
 import '../../styles/buttonStyle.css';
-import Modal from "../Modal";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {Button, Modal} from "antd";
 
 const HeroAvailable = (props: IheroAvailable) => {
     const { id, heroName, img, teamMembers, setTeamMembers  } = props;
@@ -73,14 +73,20 @@ const HeroAvailable = (props: IheroAvailable) => {
     return (
         <>
             <button style={imgLoading} className='hero-button' onClick={openModal}><img onLoad={() => setIsImageLoaded(true)} className='img' src={img} alt={img} /></button>
-            <Modal openModal={modalOpened} onClick={closeModal}>
-                <h2>{heroName}</h2>
+            <Modal
+                title={heroName} open={modalOpened} onCancel={closeModal}
+                footer={[
+                    <>
+                        <Button key="back" onClick={closeModal}>Cancel</Button>
+                        <Button type="primary" key="recruit" onClick={recruitHero} style={{ backgroundColor: "green", borderStyle: "none" }}>Recruit</Button>
+                    </>
+                ]}
+                >
                 <ul className='member-stats-list'>
                     <li><b>Power: </b><span className={colorHandler(heroStats?.power)}>{heroStats?.power}</span></li>
                     <li><b>Durability: </b><span className={colorHandler(heroStats?.durability)}>{heroStats?.durability}</span></li>
                     <li><b>Intelligence: </b><span className={colorHandler(heroStats?.intelligence)}>{heroStats?.intelligence}</span></li>
                 </ul>
-                <button className='button' onClick={recruitHero}>Recruit</button>
             </Modal>
         </>
     )

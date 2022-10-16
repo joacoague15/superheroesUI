@@ -1,8 +1,8 @@
 import '../../styles/myTeamStyle.css';
 import '../../styles/buttonStyle.css';
-import Modal from "../Modal";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { Modal } from "antd";
 
 const TeamMember = (props: any) => {
     const  { name, img, power, durability, intelligence, indexOfCurrentMember, teamMembers, setTeamMembers } = props;
@@ -39,7 +39,7 @@ const TeamMember = (props: any) => {
     return(
         <div className='member'>
             <button id='member-button' onClick={openModal}><img src={img} alt={img} /></button>
-            <Modal openModal={modalOpened} onClick={closeModal}>
+            <Modal open={modalOpened} onOk={closeModal}>
                 <h2>{name}</h2>
                 <ul className='member-stats-list'>
                     <li><b>Power: </b><span className={colorHandler(power)}>{power}</span></li>
