@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { Routes, Route, useNavigate} from 'react-router-dom';
-import { ToastContainer } from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import "antd/dist/antd.min.css";
 
 import MyTeam from "./components/my_team/MyTeam";
@@ -11,8 +11,10 @@ import './styles/toastContainerStyle.css';
 import HeroCreation from "./components/hero_creation/HeroCreation";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import axios from "axios";
 
 function App() {
+    const [userName, setUserName] = useState('');
     const [teamMembers, setTeamMembers] = useState([]);
 
     let navigate = useNavigate();
@@ -37,10 +39,31 @@ function App() {
         navigate('/creation');
     }
 
+    const logout = () => {
+        axios.post('http://localhost:4000/logout', {},{ withCredentials: true })
+            .then(() => {
+                toast.success("Logout confirmed", { position: toast.POSITION.BOTTOM_RIGHT })
+                setUserName("")
+                navigate('/login');
+            })
+            .catch(err => {
+                console.log(err)
+                toast.error("Error while trying to logout", { position: toast.POSITION.BOTTOM_RIGHT })
+            })
+    }
+
+    useEffect(() => {
+        axios.get("http://localhost:4000/authenticate", {
+            withCredentials: true
+        })
+            .then(res => setUserName(res.data?.name))
+    })
+
   return (
         <div className="App">
-            <button className='button' style={{ backgroundColor: "lightblue" }} onClick={redirectToRegister}>Register</button>
-            <button className='button' style={{ backgroundColor: "lightsalmon" }} onClick={redirectToLogin}>Login</button>
+            {!userName && <button className='button' style={{ backgroundColor: "lightblue" }} onClick={redirectToRegister}>Register</button>}
+            {!userName && <button className='button' style={{ backgroundColor: "lightsalmon" }} onClick={redirectToLogin}>Login</button>}
+            {userName && <button className='button' style={{ backgroundColor: "grey" }} onClick={logout}>Logout</button>}
             <button className='button' onClick={redirectToMyTeam}>Team</button>
             <button className='button' onClick={redirectToRecruitment}>Recruitment</button>
             <button className='button' onClick={redirectToCreation}>Create hero</button>
@@ -48,7 +71,6 @@ function App() {
             <Routes>
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/login' />
                 <Route path='/my-team' element={<MyTeam teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
                 <Route path='/recruitment' element={<HeroRecruitment teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
                 <Route path='/creation' element={<HeroCreation />} />

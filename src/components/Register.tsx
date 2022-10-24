@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Button} from "antd";
 import axios from "axios";
 import {toast} from "react-toastify";
@@ -8,7 +8,6 @@ const Register = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [_, setRepeatedPassword] = useState('')
 
     let navigate = useNavigate()
 
@@ -16,13 +15,13 @@ const Register = () => {
         e.preventDefault()
 
             axios.post('http://localhost:4000/register', {
-                name: name,
-                email: email,
-                password: password,
+                name,
+                email,
+                password,
             })
                 .then(() => {
                     toast.success("Account created", { position: toast.POSITION.BOTTOM_RIGHT })
-                    navigate('/recruitment');
+                    navigate('/login');
                 })
                 .catch(err => {
                     console.log(err)
@@ -44,10 +43,6 @@ const Register = () => {
             <label htmlFor='hero-durability'>
                 <span className='creation-span'>Password</span>
                 <input type='password' onChange={(e: any) => setPassword(e.target.value)} className='creation-text-input' name='hero-durability' />
-            </label>
-            <label htmlFor='hero-intelligence'>
-                <span className='creation-span'>Repeat password</span>
-                <input type='password' onChange={(e: any) => setRepeatedPassword(e.target.value)} className='creation-text-input' name='hero-intelligence' />
             </label>
             <Button htmlType="submit" type='primary'>Register</Button>
         </form>

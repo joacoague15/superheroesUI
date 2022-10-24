@@ -5,7 +5,6 @@ import {toast} from "react-toastify";
 import {Button} from "antd";
 
 const Login = () => {
-    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -15,10 +14,9 @@ const Login = () => {
         e.preventDefault()
 
         axios.post('http://localhost:4000/login', {
-            name: name,
-            email: email,
-            password: password,
-        })
+            email,
+            password,
+        }, { withCredentials: true })
             .then(() => {
                 toast.success("Login confirmed", { position: toast.POSITION.BOTTOM_RIGHT })
                 navigate('/recruitment');
