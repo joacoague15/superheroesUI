@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import { Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 import {toast, ToastContainer} from "react-toastify";
 import "antd/dist/antd.min.css";
 
@@ -18,25 +18,21 @@ function App() {
     const [teamMembers, setTeamMembers] = useState([]);
 
     let navigate = useNavigate();
+    const location = useLocation()
 
-    const redirectToRegister = () => {
-        navigate('/register');
+    const handleLogout = () => {
+        if (location.pathname !== '/register') {
+            setUserName('')
+            navigate("/login")
+        }
     }
 
-    const redirectToLogin = () => {
-        navigate('/login');
-    }
-
-    const redirectToMyTeam = () => {
-        navigate('/my-team');
-    }
-
-    const redirectToRecruitment = () => {
-        navigate('/recruitment');
-    }
-
-    const redirectToCreation = () => {
-        navigate('/creation');
+    const checkAuthentication = () => {
+        axios.get("http://localhost:4000/authenticate", {
+            withCredentials: true
+        })
+            .then(res => setUserName(res.data?.name))
+            .catch(() => handleLogout())
     }
 
     const logout = () => {
@@ -53,20 +49,20 @@ function App() {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:4000/authenticate", {
-            withCredentials: true
-        })
-            .then(res => setUserName(res.data?.name))
-    })
+        if (location.pathname === '/login' && userName)
+            navigate("/recruitment")
+        if (location.pathname !== '/register' && location.pathname !== '/login')
+            checkAuthentication()
+    },[navigate])
 
   return (
         <div className="App">
-            {!userName && <button className='button' style={{ backgroundColor: "lightblue" }} onClick={redirectToRegister}>Register</button>}
-            {!userName && <button className='button' style={{ backgroundColor: "lightsalmon" }} onClick={redirectToLogin}>Login</button>}
+            {!userName && <button className='button' style={{ backgroundColor: "lightblue" }} onClick={() =>  navigate('/register')}>Register</button>}
+            {!userName && <button className='button' style={{ backgroundColor: "lightsalmon" }} onClick={() => navigate('/login')}>Login</button>}
             {userName && <button className='button' style={{ backgroundColor: "grey" }} onClick={logout}>Logout</button>}
-            <button className='button' onClick={redirectToMyTeam}>Team</button>
-            <button className='button' onClick={redirectToRecruitment}>Recruitment</button>
-            <button className='button' onClick={redirectToCreation}>Create hero</button>
+            <button className='button' onClick={() => navigate('my-team')}>Team</button>
+            <button className='button' onClick={() => navigate('/recruitment')}>Recruitment</button>
+            <button className='button' onClick={() => navigate('/creation')}>Create hero</button>
             <ToastContainer />
             <Routes>
                 <Route path='/register' element={<Register />} />

@@ -22,11 +22,10 @@ const Login = () => {
                 navigate('/recruitment');
             })
             .catch(err => {
-                console.log(err)
-                toast.error("Error while trying to login", { position: toast.POSITION.BOTTOM_RIGHT })
+                console.log(err.response)
+                toast.error(err.response.data, { position: toast.POSITION.BOTTOM_RIGHT })
             })
     }
-
 
     return (
         <form onSubmit={login} className='creation-form-wrapper'>
