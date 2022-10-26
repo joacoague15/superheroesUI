@@ -7,13 +7,6 @@ export interface IteamMemberObject {
     intelligence: number;
 }
 
-export interface IteamMember {
-    name: string;
-    indexOfCurrentMember?: number;
-    teamMembers?: { name: string }[];
-    setTeamMembers?: Function;
-}
-
 export interface IallTeamMembers {
     teamMembers: { name: string, img: string, power: number, durability: number, intelligence: number }[];
     setTeamMembers: Function;
@@ -25,14 +18,4 @@ export interface IheroAvailable {
     img: string;
     teamMembers: { name: string, power: number }[];
     setTeamMembers: Function;
-}
-
-export interface IModal {
-    openModal: boolean;
-}
-
-export interface Ibutton {
-    onClick: any;
-    text: string;
-    className: string;
 }
