@@ -1,8 +1,8 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {toast} from "react-toastify";
-import {Button} from "antd";
+import { toast } from "react-toastify";
+import { Button } from "antd";
 
 const Login = () => {
     const [email, setEmail] = useState('')

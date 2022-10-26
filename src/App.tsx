@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
-import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
-import {toast, ToastContainer} from "react-toastify";
+import { useEffect, useState } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { toast, ToastContainer } from "react-toastify";
 import "antd/dist/antd.min.css";
 
 import MyTeam from "./components/my_team/MyTeam";
@@ -12,6 +12,7 @@ import HeroCreation from "./components/hero_creation/HeroCreation";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import axios from "axios";
+import Hero from "./components/Hero";
 
 function App() {
     const [userName, setUserName] = useState('');
@@ -53,6 +54,7 @@ function App() {
             navigate("/recruitment")
         if (location.pathname !== '/register' && location.pathname !== '/login')
             checkAuthentication()
+        // eslint-disable-next-line
     },[navigate])
 
   return (
@@ -70,6 +72,7 @@ function App() {
                 <Route path='/my-team' element={<MyTeam teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
                 <Route path='/recruitment' element={<HeroRecruitment teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
                 <Route path='/creation' element={<HeroCreation />} />
+                <Route path='/:id' element={<Hero />} />
             </Routes>
         </div>
   );

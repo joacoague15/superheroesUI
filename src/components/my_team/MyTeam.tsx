@@ -2,7 +2,7 @@ import { IallTeamMembers, IteamMemberObject } from "../../types";
 import TeamMember from "./TeamMember";
 import '../../styles/myTeamStyle.css';
 import DescriptionBox from "../DescriptionBox";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 const MyTeam = (props: IallTeamMembers) => {
     const { teamMembers, setTeamMembers } = props;

@@ -1,8 +1,8 @@
-import {useState} from "react";
-import {Button} from "antd";
+import { useState } from "react";
+import { Button } from "antd";
 import axios from "axios";
-import {toast} from "react-toastify";
-import {useNavigate} from "react-router-dom";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     const [name, setName] = useState('')
