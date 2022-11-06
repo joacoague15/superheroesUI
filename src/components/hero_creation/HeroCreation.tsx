@@ -6,9 +6,11 @@ import { useState } from "react";
 
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 const HeroCreation = () => {
+    const { userId } = useParams()
+
     const [createdHeroName, setCreatedHeroName] = useState('');
     const [createdHeroPower, setCreatedHeroPower] = useState('');
     const [createdHeroDurability, setCreatedHeroDurability] = useState('');
@@ -52,7 +54,7 @@ const HeroCreation = () => {
             })
                 .then(() => {
                     toast.success(succesMessage, { position: toast.POSITION.BOTTOM_RIGHT })
-                    navigate('/recruitment');
+                    navigate(`${userId}/recruitment`);
                 })
                 .catch(err => {
                     console.log(err)

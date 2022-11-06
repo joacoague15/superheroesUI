@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Button } from "antd";
 
 const Login = () => {
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -17,9 +18,10 @@ const Login = () => {
             email,
             password,
         }, { withCredentials: true })
-            .then(() => {
+            .then(res => {
+                console.log(res.data)
                 toast.success("Login confirmed", { position: toast.POSITION.BOTTOM_RIGHT })
-                navigate('/recruitment');
+                navigate(`/${res.data}/recruitment`);
             })
             .catch(err => {
                 console.log(err.response)

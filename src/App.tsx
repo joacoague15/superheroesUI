@@ -15,6 +15,7 @@ import axios from "axios";
 import Hero from "./components/Hero";
 
 function App() {
+    const [userId, setUserId] = useState(0);
     const [userName, setUserName] = useState('');
     const [teamMembers, setTeamMembers] = useState([]);
 
@@ -23,6 +24,7 @@ function App() {
 
     const handleLogout = () => {
         if (location.pathname !== '/register') {
+            setUserId(0)
             setUserName('')
             navigate("/login")
         }
@@ -32,7 +34,10 @@ function App() {
         axios.get("http://localhost:4000/authenticate", {
             withCredentials: true
         })
-            .then(res => setUserName(res.data?.name))
+            .then(res => {
+                setUserId(res.data?.id)
+                setUserName(res.data?.name)
+            })
             .catch(() => handleLogout())
     }
 
@@ -41,12 +46,26 @@ function App() {
             .then(() => {
                 toast.success("Logout confirmed", { position: toast.POSITION.BOTTOM_RIGHT })
                 setUserName("")
+                setUserId(0)
                 navigate('/login');
             })
             .catch(err => {
                 console.log(err)
                 toast.error("Error while trying to logout", { position: toast.POSITION.BOTTOM_RIGHT })
             })
+    }
+
+    const renderLoggedOptions = () => {
+        if (userId) {
+            return (
+                <>
+                    <button className='button' onClick={() => navigate(`${userId}/my-team`)}>Team</button>
+                    <button className='button' onClick={() => navigate(`${userId}/recruitment`)}>Recruitment</button>
+                    <button className='button' onClick={() => navigate(`${userId}/creation`)}>Create hero</button>
+                </>
+            )
+        }
+        return
     }
 
     useEffect(() => {
@@ -62,17 +81,15 @@ function App() {
             {!userName && <button className='button' style={{ backgroundColor: "lightblue" }} onClick={() =>  navigate('/register')}>Register</button>}
             {!userName && <button className='button' style={{ backgroundColor: "lightsalmon" }} onClick={() => navigate('/login')}>Login</button>}
             {userName && <button className='button' style={{ backgroundColor: "grey" }} onClick={logout}>Logout</button>}
-            <button className='button' onClick={() => navigate('my-team')}>Team</button>
-            <button className='button' onClick={() => navigate('/recruitment')}>Recruitment</button>
-            <button className='button' onClick={() => navigate('/creation')}>Create hero</button>
+            {renderLoggedOptions()}
             <ToastContainer />
             <Routes>
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/my-team' element={<MyTeam teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
-                <Route path='/recruitment' element={<HeroRecruitment teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
-                <Route path='/creation' element={<HeroCreation />} />
-                <Route path='/:id' element={<Hero />} />
+                <Route path={':userId/my-team'} element={<MyTeam teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
+                <Route path={':userId/recruitment'} element={<HeroRecruitment teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
+                <Route path={':userId/creation'} element={<HeroCreation />} />
+                <Route path={':userId/recruitment/:id'} element={<Hero />} />
             </Routes>
         </div>
   );
