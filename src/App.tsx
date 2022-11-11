@@ -86,7 +86,7 @@ function App() {
             <Routes>
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
-                <Route path={':userId/my-team'} element={<MyTeam teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
+                <Route path={':userId/my-team'} element={<MyTeam />} />
                 <Route path={':userId/recruitment'} element={<HeroRecruitment teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
                 <Route path={':userId/creation'} element={<HeroCreation />} />
                 <Route path={':userId/recruitment/:id'} element={<Hero />} />

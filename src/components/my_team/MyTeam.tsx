@@ -1,11 +1,14 @@
-import { IallTeamMembers, IteamMemberObject } from "../../types";
+import { IteamMemberObject } from "../../types";
 import TeamMember from "./TeamMember";
 import '../../styles/myTeamStyle.css';
 import DescriptionBox from "../DescriptionBox";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import {useParams} from "react-router-dom";
 
-const MyTeam = (props: IallTeamMembers) => {
-    const { teamMembers, setTeamMembers } = props;
+const MyTeam = () => {
+    const { userId } = useParams()
+    const [teamMembers, setTeamMembers] = useState<any>([])
     const [statsOfAllTheTeam, setStatsOfAllTheTeam] = useState({ power: 0, durability: 0, intelligence: 0 });
 
     const colorHandler = (stat: number) => {
@@ -18,6 +21,13 @@ const MyTeam = (props: IallTeamMembers) => {
             return 'yellow-text'
         return 'green-text'
     }
+
+    useEffect(() => {
+        axios.get(`http://localhost:4000/${userId}`)
+            .then(res => setTeamMembers(res.data))
+            .catch(err => console.log(err.data))
+    // eslint-disable-next-line
+    }, [])
 
     useEffect(() => {
         let powerOfTeam = 0;
