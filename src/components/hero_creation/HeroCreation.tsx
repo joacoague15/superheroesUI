@@ -15,7 +15,6 @@ const HeroCreation = () => {
     const [createdHeroPower, setCreatedHeroPower] = useState('');
     const [createdHeroDurability, setCreatedHeroDurability] = useState('');
     const [createdHeroIntelligence, setCreatedHeroIntelligence] = useState('');
-    const submitText = 'Create new hero'
 
     const nameErrorMessage = 'The hero name length is not the one expected'
     const statErrorMessage= 'There is at least one stat value that is not between 1 and 100'
@@ -54,16 +53,12 @@ const HeroCreation = () => {
             })
                 .then(() => {
                     toast.success(succesMessage, { position: toast.POSITION.BOTTOM_RIGHT })
-                    navigate(`${userId}/recruitment`);
+                    navigate(`/${userId}/recruitment`);
                 })
                 .catch(err => {
                     console.log(err)
                     toast.error(heroCreationError, { position: toast.POSITION.BOTTOM_RIGHT })
                 })
-    }
-
-    const creationButton = () => {
-        return <button type='submit' className='submit-button'>{submitText}</button>
     }
 
     return (
@@ -84,7 +79,7 @@ const HeroCreation = () => {
                 <span className='creation-span'>Intelligence</span>
                 <input type='number' onChange={(e: any) => setCreatedHeroIntelligence(e.target.value)} placeholder='1-100' className='creation-text-input' name='hero-intelligence' />
             </label>
-            { creationButton() }
+            <button type='submit' className='submit-button'>Create hero</button>
         </form>
     )
 }

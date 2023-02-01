@@ -3,16 +3,23 @@ import '../../styles/buttonStyle.css';
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { Modal } from "antd";
+import axios from "axios";
+import {useParams} from "react-router-dom";
 
-const TeamMember = (props: any) => {
-    const  { name, img, power, durability, intelligence, indexOfCurrentMember, teamMembers, setTeamMembers } = props;
+const RecruitedMember = (props: any) => {
+    const { userId } = useParams()
+    const  { id, name, img, power, durability, intelligence, fetchHeroes } = props;
 
     const [modalOpened, setModalOpened] = useState(false);
 
     const removeTeamMember = () => {
-        const newTeamStatus = teamMembers.filter((member: any) => indexOfCurrentMember !== teamMembers.indexOf(member));
-        setTeamMembers(newTeamStatus);
-        toast(`${name} was removed from the team`, { position: toast.POSITION.BOTTOM_RIGHT })
+        axios.delete(`http://localhost:4000/hero/${id}/remove/${userId}`)
+            .then(() => {
+                toast(`${name} was removed from the team`, { position: toast.POSITION.BOTTOM_RIGHT })
+                closeModal()
+                fetchHeroes()
+            })
+            .catch(err => toast(err.data, { position: toast.POSITION.BOTTOM_RIGHT }))
         closeModal();
     }
 
@@ -39,7 +46,7 @@ const TeamMember = (props: any) => {
     return(
         <div className='member'>
             <button id='member-button' onClick={openModal}><img src={img} alt={img} /></button>
-            <Modal open={modalOpened} onOk={closeModal}>
+            <Modal open={modalOpened} onCancel={closeModal} onOk={closeModal}>
                 <h2>{name}</h2>
                 <ul className='member-stats-list'>
                     <li><b>Power: </b><span className={colorHandler(power)}>{power}</span></li>
@@ -51,4 +58,4 @@ const TeamMember = (props: any) => {
         </div>
     )
 }
-export default TeamMember;
+export default RecruitedMember;

@@ -28,7 +28,10 @@ const Hero = () => {
         axios.post(`http://localhost:4000/hero/${id}/add/${userId}`, {
             userId: userId
         })
-            .then(res => toast.success(res.data, { position: toast.POSITION.BOTTOM_RIGHT }))
+            .then(res => {
+                toast.success(res.data, { position: toast.POSITION.BOTTOM_RIGHT })
+                navigate(-1)
+            })
             .catch(err => toast.error(err, { position: toast.POSITION.BOTTOM_RIGHT }))
     }
 

@@ -13,6 +13,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import axios from "axios";
 import Hero from "./components/Hero";
+import RecruitedMember from "./components/my_team/RecruitedMember";
 
 function App() {
     const [userId, setUserId] = useState(0);
@@ -87,6 +88,7 @@ function App() {
                 <Route path='/register' element={<Register />} />
                 <Route path='/login' element={<Login />} />
                 <Route path={':userId/my-team'} element={<MyTeam />} />
+                <Route path={':userId/my-team/:id'} element={<RecruitedMember />} />
                 <Route path={':userId/recruitment'} element={<HeroRecruitment teamMembers={teamMembers} setTeamMembers={setTeamMembers} />} />
                 <Route path={':userId/creation'} element={<HeroCreation />} />
                 <Route path={':userId/recruitment/:id'} element={<Hero />} />

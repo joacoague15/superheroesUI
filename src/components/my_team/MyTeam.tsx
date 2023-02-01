@@ -1,5 +1,5 @@
 import { IteamMemberObject } from "../../types";
-import TeamMember from "./TeamMember";
+import RecruitedMember from "./RecruitedMember";
 import '../../styles/myTeamStyle.css';
 import DescriptionBox from "../DescriptionBox";
 import { useEffect, useState } from "react";
@@ -21,12 +21,16 @@ const MyTeam = () => {
             return 'yellow-text'
         return 'green-text'
     }
-
-    useEffect(() => {
+    
+    const fetchHeroes = () => {
         axios.get(`http://localhost:4000/${userId}`)
             .then(res => setTeamMembers(res.data))
             .catch(err => console.log(err.data))
-    // eslint-disable-next-line
+    }
+
+    useEffect(() => {
+        fetchHeroes()
+    //eslint-disable-next-line
     }, [])
 
     useEffect(() => {
@@ -45,11 +49,6 @@ const MyTeam = () => {
 
     return (
         <div className='home-container' >
-            <div className='team-container'>
-                    {teamMembers && teamMembers.map((member: IteamMemberObject, i: number) =>
-                        member.name && <TeamMember key={i} name={member.name} img={member.img} power={member.power} durability={member.durability} intelligence={member.intelligence} indexOfCurrentMember={i} teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
-                    )}
-            </div>
             <DescriptionBox>
                 <div className="single-stat-container">
                     <h2>Power</h2>
@@ -64,6 +63,11 @@ const MyTeam = () => {
                     <h2 className={colorHandler(statsOfAllTheTeam.intelligence)}>{ statsOfAllTheTeam.intelligence } / 300</h2>
                 </div>
             </DescriptionBox>
+            <div className='team-container'>
+                {teamMembers && teamMembers.map((member: IteamMemberObject, i: number) =>
+                    member.name && <RecruitedMember fetchHeroes={fetchHeroes} key={i} id={member.id} name={member.name} img={member.img} power={member.power} durability={member.durability} intelligence={member.intelligence} />
+                )}
+            </div>
         </div>
     )
 }
