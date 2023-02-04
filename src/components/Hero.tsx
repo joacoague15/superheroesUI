@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {IteamMemberObject} from "../types";
 import {toast} from "react-toastify";
+import {Progress} from "antd";
 
 const Hero = () => {
     const { id, userId } = useParams()
@@ -36,19 +37,19 @@ const Hero = () => {
     }
 
     return (
-        <div style={{ display: 'flex', flexDirection: "column", width: '100%', height: '20vh', justifyContent: 'right', alignItems: 'center', fontFamily: 'Comic Sans MS' }}>
-            <div style={{ width: '20%' }}>
+        <div style={{ display: 'flex', flexDirection: "column", width: '25%', height: '20vh', justifyContent: 'flex-start', alignItems: 'center', fontFamily: 'Comic Sans MS', margin: 'auto' }}>
+            <div style={{ width: '100%' }}>
+                <h2 style={{ marginTop: 5, textAlign: 'center' }}>{heroInfo.name}</h2>
                 <img width='600px' src={heroInfo.img} alt='hero-img' />
             </div>
-            <h2 style={{ marginTop: 5 }}>{heroInfo.name}</h2>
-            <div style={{ display: 'flex', flexDirection: 'row', margin: 10 }}>
-                <p style={{ margin: 10 }}>Power: <b>{heroInfo.power}</b></p>
-                <p style={{ margin: 10 }}>Intelligence: <b>{heroInfo.intelligence}</b></p>
-                <p style={{ margin: 10 }}>Durability:  <b>{heroInfo.durability}</b></p>
+            <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto', width: '100%' }}>
+                Power <Progress status='normal' percent={heroInfo.power} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
+                Durability <Progress status='normal' percent={heroInfo.durability} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
+                Intelligence <Progress status='normal' percent={heroInfo.intelligence} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'row'}}>
-                <button className='button' onClick={() => navigate(-1)}>Back</button>
-                <button className='button' onClick={() => addToTeam()}>Recruit</button>
+            <div style={{ display: 'flex', flexDirection: 'row', margin: 10 }}>
+                <button style={{ fontSize: 24 }} className='button' onClick={() => navigate(-1)}>Back</button>
+                <button style={{ fontSize: 24 }} className='button' onClick={() => addToTeam()}>Recruit</button>
             </div>
         </div>
     )

@@ -7,6 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
+import {Progress} from "antd";
 
 const HeroCreation = () => {
     const { userId } = useParams()
@@ -15,6 +16,7 @@ const HeroCreation = () => {
     const [createdHeroPower, setCreatedHeroPower] = useState('');
     const [createdHeroDurability, setCreatedHeroDurability] = useState('');
     const [createdHeroIntelligence, setCreatedHeroIntelligence] = useState('');
+    const [acceptedAgreement, setAcceptedAgreement] = useState(false);
 
     const nameErrorMessage = 'The hero name length is not the one expected'
     const statErrorMessage= 'There is at least one stat value that is not between 1 and 100'
@@ -62,25 +64,34 @@ const HeroCreation = () => {
     }
 
     return (
-        <form onSubmit={createNewHero} className='creation-form-wrapper'>
-            <label htmlFor='hero-name'>
-                <span className='creation-span'>Name</span>
-                <input type='text' onChange={(e: any) => setCreatedHeroName(e.target.value)} placeholder='50 characters max' className='creation-text-input' name='hero-name' />
-            </label>
-            <label htmlFor='hero-power'>
-                <span className='creation-span'>Power</span>
-                <input type='number' onChange={(e: any) => setCreatedHeroPower(e.target.value)} placeholder='1-100' className='creation-text-input' name='hero-power' />
-            </label >
-            <label htmlFor='hero-durability'>
-                <span className='creation-span'>Durability</span>
-                <input type='number' onChange={(e: any) => setCreatedHeroDurability(e.target.value)} placeholder='1-100' className='creation-text-input' name='hero-durability' />
-            </label>
-            <label htmlFor='hero-intelligence'>
-                <span className='creation-span'>Intelligence</span>
-                <input type='number' onChange={(e: any) => setCreatedHeroIntelligence(e.target.value)} placeholder='1-100' className='creation-text-input' name='hero-intelligence' />
-            </label>
-            <button type='submit' className='submit-button'>Create hero</button>
-        </form>
+        <div>
+            <form onSubmit={createNewHero} className='creation-form-wrapper'>
+                <label htmlFor='hero-name'>
+                    <span className='creation-span'>Name</span>
+                    <input type='text' onChange={(e: any) => setCreatedHeroName(e.target.value)} placeholder='50 characters max' className='creation-text-input' name='hero-name' />
+                </label>
+                <label htmlFor='hero-power'>
+                    <span className='creation-span'>Power</span>
+                    <input type='number' onChange={(e: any) => setCreatedHeroPower(e.target.value)} placeholder='1-100' className='creation-text-input' name='hero-power' />
+                    <Progress status='normal' percent={parseInt(createdHeroPower)} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
+                </label >
+                <label htmlFor='hero-durability'>
+                    <span className='creation-span'>Durability</span>
+                    <input type='number' onChange={(e: any) => setCreatedHeroDurability(e.target.value)} placeholder='1-100' className='creation-text-input' name='hero-durability' />
+                    <Progress status='normal' percent={parseInt(createdHeroDurability)} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
+                </label>
+                <label htmlFor='hero-intelligence'>
+                    <span className='creation-span'>Intelligence</span>
+                    <input type='number' onChange={(e: any) => setCreatedHeroIntelligence(e.target.value)} placeholder='1-100' className='creation-text-input' name='hero-intelligence' />
+                    <Progress status='normal' percent={parseInt(createdHeroIntelligence)} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
+                </label>
+                <div className='noRemoveAgreement'>
+                    <input type="checkbox" id='noRemoveAgreement' name="noRemoveAgreement" value="noRemoveAgreement" onClick={() => setAcceptedAgreement(!acceptedAgreement)} />
+                    <label htmlFor="noRemoveAgreement">Be aware hero cannot be removed once created</label>
+                </div>
+                <button type='submit' className='submit-button' disabled={!acceptedAgreement}>Create hero</button>
+            </form>
+        </div>
     )
 }
 
