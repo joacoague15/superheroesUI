@@ -24,8 +24,7 @@ const Register = () => {
                     navigate('/login');
                 })
                 .catch(err => {
-                    console.log(err)
-                    toast.error("Error creating account", { position: toast.POSITION.BOTTOM_RIGHT })
+                    toast.error(err.response.data, { position: toast.POSITION.BOTTOM_RIGHT })
                 })
     }
 
@@ -38,7 +37,7 @@ const Register = () => {
             </label>
             <label htmlFor='email'>
                 <span className='creation-span'>Email</span>
-                <input type='email' onChange={(e: any) => setEmail(e.target.value)} className='creation-text-input' name='email' />
+                <input type='email' onChange={(e: any) => setEmail(e.target.value)} className='creation-text-input' name='email' required />
             </label >
             <label htmlFor='hero-durability'>
                 <span className='creation-span'>Password</span>
