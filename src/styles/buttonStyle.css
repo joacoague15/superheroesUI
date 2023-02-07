@@ -9,6 +9,17 @@
     transition: 0.4s ease;
 }
 
+.navButton {
+    background-color: white;
+    border-radius: 5px;
+    margin: 2px;
+    border-color: black;
+    font-family: "Comic Sans MS", "arial", "cursive";
+    font-size: 36px;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
 .submit-button {
     background-color: white;
     border-radius: 5px;

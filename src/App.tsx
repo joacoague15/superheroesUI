@@ -60,9 +60,9 @@ function App() {
         if (userId) {
             return (
                 <>
-                    <button className='button' onClick={() => navigate(`${userId}/my-team`)}>Team</button>
-                    <button className='button' onClick={() => navigate(`${userId}/recruitment`)}>Recruitment</button>
-                    <button className='button' onClick={() => navigate(`${userId}/creation`)}>Create hero</button>
+                    <button style={{ fontSize: 36 }} className='navButton' onClick={() => navigate(`${userId}/my-team`)}>Team</button>
+                    <button style={{ fontSize: 36 }} className='navButton' onClick={() => navigate(`${userId}/recruitment`)}>Recruitment</button>
+                    <button style={{ fontSize: 36 }} className='navButton' onClick={() => navigate(`${userId}/creation`)}>Create hero</button>
                 </>
             )
         }
@@ -78,10 +78,10 @@ function App() {
     },[navigate])
 
   return (
-        <div className="App">
-            {!userName && <button className='button' style={{ backgroundColor: "lightblue" }} onClick={() =>  navigate('/register')}>Register</button>}
-            {!userName && <button className='button' style={{ backgroundColor: "lightsalmon" }} onClick={() => navigate('/login')}>Login</button>}
-            {userName && <button className='button' style={{ backgroundColor: "grey" }} onClick={logout}>Logout</button>}
+        <div style={{ textAlign: 'center', margin: 10 }} className="App">
+                {!userName && <button className='navButton' style={{ backgroundColor: "lightblue", fontSize: 36 }} onClick={() =>  navigate('/register')}>Register</button>}
+                {!userName && <button className='navButton' style={{ backgroundColor: "orange", fontSize: 36 }} onClick={() => navigate('/login')}>Login</button>}
+                {userName && <button className='navButton' style={{ backgroundColor: "grey", fontSize: 36 }} onClick={logout}>Logout</button>}
             {renderLoggedOptions()}
             <ToastContainer />
             <Routes>

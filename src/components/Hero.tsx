@@ -39,10 +39,10 @@ const Hero = () => {
     return (
         <div style={{ display: 'flex', flexDirection: "column", width: '25%', height: '20vh', justifyContent: 'flex-start', alignItems: 'center', fontFamily: 'Comic Sans MS', margin: 'auto' }}>
             <div style={{ width: '100%' }}>
-                <h2 style={{ marginTop: 5, textAlign: 'center' }}>{heroInfo.name}</h2>
+                <h1 style={{ marginTop: 5, textAlign: 'center', fontSize: 42 }}>{heroInfo.name}</h1>
                 <img width='600px' src={heroInfo.img} alt='hero-img' />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto', width: '100%' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', margin: 'auto', width: '100%', fontSize: 24 }}>
                 Power <Progress status='normal' percent={heroInfo.power} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
                 Durability <Progress status='normal' percent={heroInfo.durability} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
                 Intelligence <Progress status='normal' percent={heroInfo.intelligence} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />

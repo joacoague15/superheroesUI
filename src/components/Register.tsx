@@ -44,7 +44,7 @@ const Register = () => {
                 <span className='creation-span'>Password</span>
                 <input type='password' onChange={(e: any) => setPassword(e.target.value)} className='creation-text-input' name='hero-durability' />
             </label>
-            <Button htmlType="submit" type='primary'>Register</Button>
+            <Button style={{ backgroundColor: 'orange', border: '2px solid black', color: 'black' }} htmlType="submit" type='primary'>Register</Button>
         </form>
     )
 }

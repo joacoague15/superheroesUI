@@ -89,7 +89,7 @@ const HeroCreation = () => {
                     <input type="checkbox" id='noRemoveAgreement' name="noRemoveAgreement" value="noRemoveAgreement" onClick={() => setAcceptedAgreement(!acceptedAgreement)} />
                     <label htmlFor="noRemoveAgreement">Be aware hero cannot be removed once created</label>
                 </div>
-                <button type='submit' className='submit-button' disabled={!acceptedAgreement}>Create hero</button>
+                <button type='submit' className='submit-button' disabled={!acceptedAgreement} style={{ fontSize: 28 }}>Create hero</button>
             </form>
         </div>
     )

@@ -34,12 +34,12 @@ const RecruitedMember = (props: any) => {
     return(
         <div className='member'>
             <button id='member-button' onClick={openModal}><img src={img} alt={img} /></button>
-            <Modal open={modalOpened} onCancel={closeModal} onOk={closeModal}>
+            <Modal footer={null} open={modalOpened} onCancel={closeModal} onOk={closeModal}>
                 <h2 style={{ textAlign: 'center' }}>{name}</h2>
                 <ul className='member-stats-list'>
-                    Power <Progress percent={power} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
-                    Durability <Progress percent={durability} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
-                    Intelligence <Progress percent={intelligence} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
+                    Power <Progress status='normal' percent={power} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
+                    Durability <Progress status='normal' percent={durability} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
+                    Intelligence <Progress status='normal' percent={intelligence} strokeColor={{ '0%': 'orange', '100%': 'orange' }} />
                 </ul>
                 {name && <button style={{ width: '100%' }} className='button' onClick={removeTeamMember}>Remove {name} from the team</button>}
             </Modal>
