@@ -14,6 +14,7 @@ import Login from "./components/Login";
 import axios from "axios";
 import Hero from "./components/Hero";
 import RecruitedMember from "./components/my_team/RecruitedMember";
+import HomePageImages from "./HomePageImages";
 
 function App() {
     const [userId, setUserId] = useState(0);
@@ -93,6 +94,7 @@ function App() {
                 <Route path={':userId/creation'} element={<HeroCreation />} />
                 <Route path={':userId/recruitment/:id'} element={<Hero />} />
             </Routes>
+            <HomePageImages />
         </div>
   );
 }
